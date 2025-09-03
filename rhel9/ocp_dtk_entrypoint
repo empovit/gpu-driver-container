@@ -26,6 +26,7 @@ nv-ctr-run-with-dtk() {
            /usr/local/bin/common.sh \
            /usr/local/bin/extract-vmlinux \
            /usr/local/bin/vgpu-util \
+           /usr/bin/unzboot \
            /drivers \
            /licenses \
            "$DRIVER_TOOLKIT_SHARED_DIR/"
@@ -137,6 +138,7 @@ dtk-build-driver() {
        "$DRIVER_TOOLKIT_SHARED_DIR/common.sh" \
        "$DRIVER_TOOLKIT_SHARED_DIR/extract-vmlinux" \
        "$DRIVER_TOOLKIT_SHARED_DIR/vgpu-util" \
+       "$DRIVER_TOOLKIT_SHARED_DIR/unzboot" \
        "${DRIVER_TOOLKIT_SHARED_DIR}/bin"
 
     ln -s $(which true) ${DRIVER_TOOLKIT_SHARED_DIR}/bin/dnf --force
@@ -179,8 +181,8 @@ dtk-build-driver() {
         ln -s /run/nvidia/driver/lib/modules/${KERNEL_VERSION}/kernel/drivers/video/ /lib/modules/${KERNEL_VERSION}/updates/dkms
 
         # Install nvidia-fs
-	    make -C $DRIVER_TOOLKIT_SHARED_DIR/gds-nvidia-fs/src 
-        
+	    make -C $DRIVER_TOOLKIT_SHARED_DIR/gds-nvidia-fs/src
+
 	    echo "#"
         echo "# nvidia-fs build script completed."
         echo "#"
